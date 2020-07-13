@@ -1,12 +1,15 @@
 <?php
 
-
 namespace Ragnarok;
 
-
+/**
+ * Class DI
+ *
+ * @package Ragnarok
+ */
 class DI
 {
-    private $collection;
+    private $dependencies;
 
     public function __get($name): ?object
     {
@@ -18,22 +21,31 @@ class DI
         return $this->inject($name, $object);
     }
 
+    public function has(string $name): bool
+    {
+        return isset($this->dependencies[$name]);
+    }
+
     public function inject(string $name, object $object): object
     {
-        if (!isset($this->collection[$name])) {
-            $this->collection[$name] = $object;
+        if (!$this->has($name)) {
+            $this->dependencies[$name] = $object;
         }
 
-        return $this->collection[$name];
-
+        return $this->dependencies[$name];
     }
 
     public function get(string $name): ?object
     {
-        if (isset($this->collection[$name])) {
-            return $this->collection[$name];
+        if ($this->has($name)) {
+            return $this->dependencies[$name];
         }
 
         return null;
+    }
+
+    public function all(): ?array
+    {
+        return $this->dependencies;
     }
 }
