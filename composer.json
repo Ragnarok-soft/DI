@@ -1,0 +1,21 @@
+{
+    "name": "ragnarok-soft/di",
+    "description": "Dependency injection",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ragnarok-soft",
+            "email": "ragnarok.software.acc@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ragnarok\\": "src/"
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    }
+}
